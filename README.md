@@ -7,7 +7,7 @@ DearDoctor is a web-based AI chatbot designed to provide medical advice and assi
 - **Personalized Medical Assistance**: Consult your personal AI doctor for medical advice and assistance.
 - **Responsive Design**: User-friendly interface accessible on various devices.
 - **Secure Communication**: Your privacy and confidentiality are ensured through secure communication channels.
-- **Advanced AI Technology**: Powered by state-of-the-art AI models for accurate and relevant responses.
+- **Advanced AI Technology**: Powered by GPT-3.5-Turbo-16k models for accurate and relevant responses.
 
 ## Screenshots
 
@@ -21,7 +21,24 @@ DearDoctor is a web-based AI chatbot designed to provide medical advice and assi
 ![Privacy and Disclaimer](doctorgpt3.PNG)
 
 ## Usage
-To use DearDoctor, simply visit the website and start typing your medical inquiries. The AI chatbot will provide prompt and informative responses to assist you with your health concerns.
+
+1. Obtain your `OpenAI key from https://openai.com/blog/openai-api`
+2. Replace your OpenAI key in the functionality.js
+```bash
+Authorization": "Bearer YOUR_OPENAI_KEY"
+``` 
+3. To clone this repository to your local machine, use the following command:
+```bash
+git clone https://github.com/zubairjammu786/deardoctor.git
+```
+4. Change the directory to
+```bash
+cd deardoctor
+```
+5. run the file
+```bash
+deardoctor.html
+```
 
 ## Contributing
 Contributions are welcome! If you have suggestions, feature requests, or would like to report a bug, please open an issue or submit a pull request.
