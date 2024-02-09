@@ -12,13 +12,13 @@ DearDoctor is a web-based AI chatbot designed to provide medical advice and assi
 ## Screenshots
 
 ### Main Chat Interface
-![Chat Interface](screenshot/doctor.PNG)
+![Chat Interface](doctor.PNG)
 
 ### Example Conversation
-![Example Conversation](screenshot/doctor2.PNG)
+![Example Conversation](doctor2.PNG)
 
 ### Privacy and Disclaimer
-![Privacy and Disclaimer](screenshot/doctor3.PNG)
+![Privacy and Disclaimer](doctor3.PNG)
 
 ## Usage
 To use DearDoctor, simply visit the website and start typing your medical inquiries. The AI chatbot will provide prompt and informative responses to assist you with your health concerns.
