@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DearDoctor</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  background-color: black;
+  background-image:url("https://w0.peakpx.com/wallpaper/538/546/HD-wallpaper-whatsapp-dark-mode-whatsapp.jpg")
+  }
+
+  .chat-container {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 15px;
+    margin-top:5px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .chat-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .chat-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: skyblue;
+    margin: 0;
+  }
+
+  .chat-bot-name {
+    font-size: 16px;
+    color: white;
+    margin: 0;
+  }
+
+  .chat-display {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .chat-message {
+    margin-bottom: 10px;
+  }
+
+  .user-message {
+    background-color: #d2f7b5;
+    border-radius: 10px;
+    padding: 10px;
+    float: left;
+    clear: both;
+    width: 70%;
+	margin-left:3%;
+	font-size:18px;
+  }
+
+  .ai-message {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    float: right;
+    clear: both;
+    width: 70%;
+	font-size:18px;
+	margin-right:3%;
+  }
+
+  .code-block {
+    white-space: pre-wrap;
+    background-color: black;
+   color:lightgreen;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+
+.input-row {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.user-input {
+    flex-grow: 1;
+    margin-right: 10px;
+    border-radius: 25px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    background-color: #f2f2f2;
+    font-size: 16px;
+}
+
+.send-button {
+    background-color: skyblue;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+  .ai-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+
+</style>
+</head>
+<body>
+
+
+  <div class="chat-header">
+<img src="https://i.imgur.com/11qLOst.png" class="ai-icon">
+    <h2 class="chat-title"> DearDoctor - Your Personal AI Doctor</h2>
+		<b><p class="chat-bot-name">Consult your doctor in any serious issue. Liked project ? Rate <a href=https://github.com/zubairjammu786/deaddoctor">Here</a></p></b>
+
+  </div>
+
+  <div id="chat-display" class="chat-display"></div>
+
+  <div class="input-row">
+    <input type="text" id="user-input" class="user-input w3-input" placeholder="Type a message...">
+    <button onclick="sendMessage()" class="send-button">Send</button>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function displayMessage(message, isUser) {
+  var chatDisplay = $("#chat-display");
+  var messageClass = isUser ? "user-message" : "ai-message";
+  var messageHtml = '<div class="' + messageClass + ' chat-message">' + message + '</div>';
+  chatDisplay.append(messageHtml);
+  // Scroll to the bottom of the chat display
+  chatDisplay.scrollTop(chatDisplay[0].scrollHeight);
+}
+
+
+
+
+
+function sendMessage() {
+  var userInput = $("#user-input").val();
+  if (!userInput) return;
+
+  var isHelloOrHi = userInput.toLowerCase() === "hello" || userInput.toLowerCase() === "hi";
+  
+  // Display user's message
+  displayMessage(userInput, true);
+  
+  // Logic to respond with "Yes" if user says "Hello" or "Hi"
+  if (isHelloOrHi) {
+    displayMessage("Hi there. I am your personal AI doctor maid by Zubair. Please ask me any medical query related to your health or psychological problems", false);
+    $("#user-input").val(""); // Clear input field
+    return;
+  }
+
+  var requestData = {
+    "model": "gpt-3.5-turbo-16k",
+    "messages": [{"role": "user", "content": "If the question is only related to medical, diseases, treatments then answer and if its off topic respond 'Sorry, Please ask any question related to your medical or Psychological health' only: " + userInput}], // Add "Medical: " prefix
+    "temperature": 0.6
+  };
+
+
+  $.ajax({
+    url: "https://app.oxyapi.uk/v1/chat/completions",
+    type: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer oxy-ooJ2NcyIMRrXB7bSkxHA2cGxqvuc06AfCUSHHmiuvYJfC"
+    },
+    data: JSON.stringify(requestData),
+    success: function(data) {
+      var choices = data.choices;
+      for (var i = 0; i < choices.length; i++) {
+        var aiResponse = choices[i].message.content;
+        displayMessage(formatResponse(aiResponse), false);
+      }
+    },
+    error: function(xhr, status, error) {
+      displayMessage("Error: " + error, false);
+    }
+  });
+
+  // Clear input field
+  $("#user-input").val("");
+}
+
+function formatResponse(response) {
+  // Check if the response contains code
+  if (response.includes("```")) {
+    // Wrap code in <code> tags
+    response = response.replace(/```([^```]+)```/g, '<div class="code-block">$1</div>');
+  }
+  return response;
+}
+</script>
+
+</body>
+</html>
