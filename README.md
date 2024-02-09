@@ -22,7 +22,7 @@ DearDoctor is a web-based AI chatbot designed to provide medical advice and assi
 
 ## Usage
 
-1. Obtain your `OpenAI key from `https://openai.com/blog/openai-api`
+1. Obtain your OpenAI key from `https://openai.com/blog/openai-api`
 2. Replace your OpenAI key in the functionality.js
 ```bash
 Authorization": "Bearer YOUR_OPENAI_KEY"
