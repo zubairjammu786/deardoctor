@@ -1,7 +1,7 @@
 # DearDoctor - Your Personal AI Doctor
 DearDoctor is a web-based AI chatbot designed to provide medical advice and assistance. It utilizes cutting-edge AI technology to respond to user queries related to medical conditions, diseases, treatments, and general health inquiries.
 
-![DearDoctor Preview](screenshot/doctor.PNG)
+![Chat Interface](doctorgpt.PNG)
 
 ## Features
 - **Personalized Medical Assistance**: Consult your personal AI doctor for medical advice and assistance.
