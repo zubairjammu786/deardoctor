@@ -40,7 +40,7 @@ function sendMessage() {
     type: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": "Bearer YOUR_OPENAI_KEY"
+      "Authorization": "Bearer oxy-6aGszfwSYGf3gSSJLr8NIDocwvQGIEXcHs3fO8WIDeVGG"
     },
     data: JSON.stringify(requestData),
     success: function(data) {
