@@ -1,4 +1,3 @@
-<script>
 function displayMessage(message, isUser) {
   var chatDisplay = $("#chat-display");
   var messageClass = isUser ? "user-message" : "ai-message";
@@ -67,4 +66,3 @@ function formatResponse(response) {
   }
   return response;
 }
-</script>
